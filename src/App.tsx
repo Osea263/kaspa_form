@@ -166,7 +166,7 @@ function App() {
   settelegramUsername("")
   setAccessCode("")
 
-  console.log('Data submitted to Firestore');
+  alert('Data Submitted Successfully');
     // Add any logic to handle form submission here
   };
 
@@ -229,8 +229,11 @@ function App() {
                 
               </div>
               <div className="form-group">
-                <label htmlFor="kas-wallet">Submit Telegram Username</label>
-                <Input type="text" id="telegram-username" required placeholder="Enter your Telegram username" value={telegramUsername} onChange={(e) => settelegramUsername(e.target.value)} />
+                <label htmlFor="kas-wallet">Telegram Username</label>
+                <a href="https://t.me/KasalaDogs" target="_blank" rel="noreferrer noopener" className="telegram-redirect-button">
+                Join Telegram
+                </a>
+                <Input type="text" id="telegram-username" required placeholder="Enter Telegram username" value={telegramUsername} onChange={(e) => settelegramUsername(e.target.value)} />
               </div>
 
             

@@ -79,6 +79,21 @@
   cursor: pointer;
 }
 
+.telegram-redirect-button {
+  position: absolute;
+  top: 95px;
+  right: 20px;
+  z-index: 1;
+  visibility: visible; /* Ensure visibility */
+  display: inline-block; /* Adjust display if needed */
+  padding: 6px 15px;
+  background-color: #1DA1F3;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
 .App-link {
   color: #61dafb;
 }
