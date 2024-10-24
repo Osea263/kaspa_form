@@ -3,27 +3,8 @@ import './App.css';
 import { Button, Card, Input, Radio } from 'antd'; 
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from './firebaseConfig';
+import "./Modal.css";
 
-// Import the functions you need from the SDKs you need
-// import { initializeApp } from "firebase/app";
-// import { getAnalytics } from "firebase/analytics"; 
-// import * as firebase from 'firebase/app';
-// import 'firebase/firestore';
-
-// const firebaseConfig = {
-//   apiKey: "AIzaSyC2MinEapjIY4eOp7DFSXans3Ne6qUjaPM",
-//   authDomain: "kalala-c01c5.firebaseapp.com",
-//   projectId: "kalala-c01c5",
-//   storageBucket: "kalala-c01c5.appspot.com",
-//   messagingSenderId: "394719457612",
-//   appId: "1:394719457612:web:cf86a6129706e7f2695fe9",
-//   measurementId: "G-H7EPB5PHZM"
-// };
-
-// // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-// const firestore = firebase.firestore();
-// const analytics = getAnalytics(app);
 
 
 
@@ -118,33 +99,6 @@ function App() {
 
   // database 
   const dbref = collection(db, "userData")
-  
-
-  const send = async () => {
-    try {
-      
-      await addDoc(dbref, {TwitterUsername:twitterUsername, TelegramUsername:telegramUsername, AccessCode:accessCode, KaspaAddress:address})
-      alert("Message Send Successfully")
-    } catch (error) {
-      alert("Error")
-    }
-  }
-
-  // const handleSubmit = () => {
-    
-  //   db.collection("airdrop_entries").add(
-  //     {
-  //       TwitterUsername:twitterUsername,
-  //       TelegramUsername:telegramUsername,
-  //        AccessCode:accessCode,
-  //         KaspaAddress:address
-  //     }
-  //   )
-  //   .then(() =>{ alert("Message submitted")})
-  //   .catch((error) =>{
-  //     alert(error.message)
-  //   })
-  // }
 
 
 
@@ -166,9 +120,28 @@ function App() {
   settelegramUsername("")
   setAccessCode("")
 
-  alert('Data Submitted Successfully');
+  
+  toggleModal()
+  
     // Add any logic to handle form submission here
+    // 
   };
+
+
+
+  const [modal, setModal] = useState(false);
+
+  const toggleModal = () => {
+    setModal(!modal);
+  };
+
+  if(modal) {
+    document.body.classList.add('active-modal')
+  } else {
+    document.body.classList.remove('active-modal')
+  }
+
+
 
   if (!kaswareInstalled) {
     return (
@@ -221,15 +194,14 @@ function App() {
          
             <Card size="small" title="𐤊asala Airdrop" style={{ width: 300, margin: 10 }}>
             <form onSubmit={handleSubmit}>
-              <div className="form-group">
+              <div className="form-group twitter">
                 <a href="https://x.com/intent/follow?screen_name=kasala_dog" target="_blank" rel="noreferrer noopener" className="twitter-redirect-button">
                 Follow X
                 </a>
                 <Input type="text" id="twitter-username" required placeholder="Enter your X username" value={twitterUsername} onChange={(e) => setTwitterUsername(e.target.value)} />
                 
               </div>
-              <div className="form-group">
-                <label htmlFor="kas-wallet">Telegram Username</label>
+              <div className="form-group telegram">
                 <a href="https://t.me/KasalaDogs" target="_blank" rel="noreferrer noopener" className="telegram-redirect-button">
                 Join Telegram
                 </a>
@@ -241,7 +213,7 @@ function App() {
                 <label htmlFor="access-code">Enter DOG Code</label>
                 <Input type="text" id="access-code" placeholder="" required value={accessCode} onChange={(e) => setAccessCode(e.target.value)} />
               </div>
-              <img src="./5.png" alt="Icon" ></img>
+             
               <button type="submit" className="btn btn-primary" >SUBMIT</button>
             </form>
              </Card> 
@@ -249,6 +221,7 @@ function App() {
 
         ) : (
           <div>
+            <p>Get Started</p>
             <Button
               onClick={async () => {
                 const result = await kasware.requestAccounts();
@@ -258,6 +231,20 @@ function App() {
             </Button>
           </div>
         )}
+
+           {modal && (
+        <div className="modal">
+          <div onClick={toggleModal} className="overlay"></div>
+          <div className="modal-content">
+            <h2>Congratulations!!!</h2>
+            <p>
+             Data Submitted Successfully. <br/>
+             Click the link bellow to Retweet on X
+            </p>
+            <a href="https://x.com/kasala_dog" className="close-modal"  target="_blank"> Retweet</a>
+          </div>
+        </div>
+      )}
       </header>
     </div>
   );
