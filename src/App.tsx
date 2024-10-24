@@ -201,8 +201,7 @@ function App() {
                 <Input type="text" id="twitter-username" required placeholder="Enter your X username" value={twitterUsername} onChange={(e) => setTwitterUsername(e.target.value)} />
                 
               </div>
-              <div className="form-group">
-                <label htmlFor="kas-wallet">Telegram Username</label>
+              <div className="form-group telegram">
                 <a href="https://t.me/KasalaDogs" target="_blank" rel="noreferrer noopener" className="telegram-redirect-button">
                 Join Telegram
                 </a>
