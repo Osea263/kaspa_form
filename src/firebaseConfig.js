@@ -10,7 +10,7 @@ import "firebase/compat/firestore"
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCIDHQL1yT3CVW1CEVj7dKQY6Ag9wFBewc",
+  apiKey: "api_key",
   authDomain: "kaspa-form-af0b3.firebaseapp.com",
   projectId: "kaspa-form-af0b3",
   storageBucket: "kaspa-form-af0b3.appspot.com",
